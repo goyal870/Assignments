@@ -1,1 +1,237 @@
+Q1
+
+function DeciToOctal(n){
+    let bin =0;
+    let pos =1;
+    while(n!=0){
+        let rem = n%8;
+        bin = rem*pos +bin;
+        n = parseInt(n/8);
+        pos = pos*10;
+
+    }
+    return bin;
+}
+
+Q2
+
+function calculator(n1, n2, ch){
+    switch(ch){
+        case "+":
+            return n1+n2;
+
+        case "-":
+            return n1-n2;
+        
+        case "*":
+            return n1*n2;
+
+        case "/":
+            return n1/n2;
+
+        case "%":
+            return (n1%n2);
+
+        default:
+            return ("I am still learning")
+    }
+
+}
+
+Q3
+
+function character(ch){
+    let charCode = ch.charCodeAt(0);
+    if(charCode > 64 && charCode < 91){
+        console.log("UpperCase");
+    }
+    else if(charCode > 96 && charCode < 123){
+        console.log("LowerCase");
+    }
+}
+character('A');
+
+Q4
+
+function reverse(n){
+    let newNo=0;
+    while(n!=0){
+        let rem = n%10;
+        newNo =newNo*10+rem;
+        n = parseInt(n/10);
+    }
+    return newNo;
+}
+
+Q5
+
+function count_digit(n){
+    let count =0;
+    if(n>=1){
+        count++;
+    }
+    while(n/10 >=1){
+        n/=10;
+        count++;
+    }
+    return count;
+   
+}
+
+Q6
+
+function GCD(a, b){
+    if(a>b){
+        while(b!=0){
+            a = b;
+            b = a-b;
+        }
+        return a;
+    }
+
+    else{
+        while(a!=0){
+            b = a;
+            a = b-a;
+        }
+        return b;
+    }
+}
+
+Q7
+
+function lcm(num1, num2) {
+    let greater = num1 > num2 ? num1 : num2;
+    let lcm = greater;
+    let t = num1*num2;
+    while(lcm <= t) {
+        if((lcm % num1 == 0) && (lcm % num2 == 0)) {
+            return lcm;
+        }
+    lcm = lcm + greater;
+  }
+}
+
+Q8
+
+function count5(arr){
+    let count = 0;
+
+    for (let i=0; i<arr.length; i++){
+        if(arr[i]%5==0){
+            count++;
+        }
+    }
+    return count;
+}
+
+Q9
+
+let array = [3,7,9,10];
+function countPrime(arr) {
+    let count = 0;
+    let j;
+    for (let i = 0; i < arr.length; i++) {
+        for (j = 2; j*j < arr[i] ; j++) {
+            if(arr[i] % j == 0) {
+                break;
+            }
+        }
+        if(j*j > arr[i]){
+            count++;
+        }
+    }
+    return count;
+}
+console.log(countPrime(array));
+
+Q10
+
+function isSorted(arr){
+    for(let i=0; i<arr.length-1; i++){
+        if(arr[i] > arr[i+1]){
+            return false;
+        }
+    }
+    return true;
+}
+
+Q11
+
+function sortArray(arr){
+    for(let i =0;i<arr.length-1;i++){
+        for(let j =0;j<arr.length;j++){
+            if(arr[j]>arr[j+1]){
+                [arr[j], arr[j+1]]=[arr[j+1],arr[j]];
+            }
+        }
+    }
+}
+let arr = [1,0,1,0,1,0,0,1,1];
+sortArray(arr);
+console.log(arr);
+
+Q12 
+
+function oddEven(arr){
+    let odd = []
+    let even = []
+
+    for(let i=0; i<arr.length; i++){
+        if(arr[i]%2 == 0){
+            even.push(arr[i]);
+        }
+        else{
+            odd.push(arr[i]);
+        }
+    }
+    return even.concat(odd);
+}
+
+Q13
+
+function reverseArray(arr){
+    let start = 0, end = arr.length-1;
+    while(start <= end){
+        [arr[start], arr[end]] = [arr[end], arr[start]];
+        start++;
+        end--;
+    }
+}
+
+Q14
+
+function pair(arr, target) {
+    let count =0;
+    for(let i=0;i<arr.length;i++) {
+        for (let j=i;j<arr.length;j++) {
+            if(arr[i] + arr[j]== target)
+            console.log(arr[i] + ", "  + arr[j]);
+        
+        }
+    }
+
+}
+let arr = [3, 1,22,11, 5, -1, 13, 6];
+let target=10;
+pair(arr, target)
+
+Q16
+
+let arr = [3,4,5];
+let n = arr.length;
+for(let i = 0; i < 2**n;i++){
+    let arr1=[];
+    let j = 0;
+    let index1 = i;
+    while(index1 > 0){
+        if(index1&1){
+            arr1.push(arr[j])
+        }
+        index1 = index1 >>1;
+        j++;
+    }
+    console.log(arr1);
+}
+
 
