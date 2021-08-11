@@ -1,1 +1,258 @@
+Q1 
 
+function Pattern(n) {
+    if(n==5){
+        return
+        
+    }
+    
+}
+
+Q2
+
+function sum(n){
+    if(n == 1){
+        return 1;
+    }
+    return n + sum(n-1);
+}
+let res = sum(5);
+console.log(res);
+
+Q3
+
+function occur(arr, tar, ind = 0, a = -1) {
+    if(ind == arr.length - 1 && a < 0){
+        return a;
+    }
+    else if(ind == arr.length - 1){
+        return a;
+    }
+    let ele = arr[ind];
+    if(ele == tar){
+        a = ind;
+        return occur(arr, tar, ind+1, a);
+    }
+    return occur(arr, tar, ind+1);
+}
+
+let arr = [3, 2, 4, 8, 6, 2, 3];
+let result = occur(arr, 1);
+console.log(result);
+
+Q4
+
+function InderxFinder(arr,target,index=0,newarr=[]) {
+    if(index==arr.length){
+        return newarr     
+    }
+    if(arr[index]==target){
+        newarr.push(index)
+        // console.log(newarr)
+    }
+    return InderxFinder(arr,target,index+1,newarr)
+
+}
+arr = [0,4,2,2,1,2,3,4,2]
+target = 2
+console.log(InderxFinder(arr,target))
+
+Q5
+
+function revArr(arr, start, end){
+    if(start == end){
+        return;
+    }
+    [arr[start], arr[end]] = [arr[end], arr[start]];
+     revArr(arr, start+1, end -1);
+}
+
+
+let arr = [1, 2, 3];
+console.log(arr);
+revArr(arr, 0, arr.length-1);
+console.log(arr);
+
+Q6
+
+function Inverse(arr,index = 0,newarr=[],counter = 0){
+    if(counter==arr.length){
+        console.log(newarr)
+        return
+    }
+    if(arr[index]==counter+1){
+        newarr.push(index+1)
+        return Inverse(arr,index=0,newarr,counter+1)
+    }
+    return Inverse(arr,index+1,newarr,counter)
+
+}
+let arr = [2,5,4,1,3];
+Inverse(arr)
+
+Q7
+
+function BubleSort(arr,size){
+    if(size==0){
+        return
+    }
+    for(let i = 0;i<size-1;i++){
+        if(arr[i]>arr[i+1]){
+            [arr[i],arr[i+1]]=[arr[i+1],arr[i]]
+        }
+        BubleSort(arr,size-1)
+    }
+}
+arr = [10,9,8,13,11,4,3,2,1];
+size = arr.length
+BubleSort(arr,size)
+console.log(arr)
+
+Q8
+
+function selectionSort(arr, last, ind = 0){
+    if(last === 0){
+        return;
+    }
+    let maxInd = maxi(arr, last);
+    console.log(maxInd, last);
+    // console.log(arr);
+    [arr[maxInd], arr[last]] = [arr[last], arr[maxInd]];
+    selectionSort(arr, last-1, ind);
+}
+
+function maxi(arr, end){
+    if(end == 1){
+        return arr[0];
+    }
+    let res = Math.max(arr[end], maxi(arr, end -1))
+}
+let arr = [5,4,3,2,1];
+let searchSpace = arr.length-1;
+selectionSort(arr, searchSpace);
+console.log(arr);
+
+Q9
+
+function checkRule(str) {
+    if(str.length==0){
+        return true
+    }
+
+if(str.substring(0,1)!=="a"&& str.substring(0,2)!=="bb"){
+    return false
+}
+
+let checkA = false
+let checkBB = false
+if(str.substring(0,1)==="a"){
+    checkA = checkRule(str.substring(1))
+}
+else if(str.substring(0,2)==="bb"){
+    checkBB = checkRule(str.substring(2))
+}
+return checkA||checkBB
+}
+let str = "abbabb"
+console.log(checkRule(str))
+
+Q10
+
+function TwinCount(str, index = 0, TwinCounter = 0) {
+    if (index > str.length - 3) {
+        console.log(TwinCounter)
+        return 
+    }
+
+    if (str[index] != str[index + 1] && str[index] == str[index + 2]) {
+        return TwinCount(str,index+1,TwinCounter+1)
+    }
+    else {
+        return TwinCount(str, index + 1, TwinCounter);
+    }
+}
+let str = "AXAXA"
+ TwinCount(str)
+// console.log(res)
+
+Q11 A
+
+function subseq(str, arr, str1="", ind = 0){
+    if(ind == str.length){
+        arr.push(str1);
+        return;
+    }
+    let ch = str[ind];
+    let uniCh = (ch.charCodeAt(0)).toString();
+    subseq(str, arr, str1, ind+1);
+    subseq(str, arr, str1+ch, ind+1);
+    subseq(str, arr, str1+uniCh, ind+1);
+    return arr.length;
+}
+let arr=[];
+let str = 'ab';
+res = subseq(str, arr);
+console.log(res);
+console.log(arr);
+
+Q12
+
+function DuplicateFind(str, ind = 0) {
+    if (ind == str.length - 1) {
+        console.log(str)
+        return str
+    }
+
+    if (str[ind] == str[ind + 1]) {
+        let ModStr = str.substring(ind + 1)
+        let ChangeStr = str.substring(0, ind + 1) + "-";
+        let NewStr = ChangeStr + ModStr
+        return DuplicateFind(NewStr, ind + 1)
+    }
+    return DuplicateFind(str, ind + 1)
+
+}
+let str = 'hello';
+let res = DuplicateFind(str);
+
+Q13
+
+function ReplaceDuplicate(str,index=0) {
+    if(index==str.length){
+        console.log(str)
+        return str
+    }
+    if(str[index]==str[index+1]){
+        let newstr = str.replace(str[index],'')
+        return ReplaceDuplicate(newstr,index)
+    }
+    return ReplaceDuplicate(str,index+1)
+}
+let str = "Heeeelllloo"
+ReplaceDuplicate(str)
+
+Q14
+
+function checkBalanced(str, ind = 0, open = 0, closed= 0){
+    if(ind === str.length -1){
+        if(open === closed){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    if(open >= closed){
+        if((str[ind] =='{') || (str[ind] == '[') || (str[ind] == '(')){
+           return checkBalanced(str, ind+1, open+1, closed);
+        }
+        if((str[ind] == '}') || (str[ind] == ']') || (str[ind] == ')')){
+           return checkBalanced(str, ind+1, open, closed+1);
+        }
+        return checkBalanced(str, ind+1, open, closed);
+    }
+}
+let str = '[a+{b+(c+d)+e+f]';
+let res = checkBalanced(str);
+console.log(res);
